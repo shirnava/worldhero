@@ -18,9 +18,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
-import android.widget.Toast;
+import app.worldhero.fragments.Learn;
+import app.worldhero.fragments.TakeAction;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,6 +50,19 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.nav_learn);
+        onNavigationItemSelected(navigationView.getCheckedItem());
+    }
+
+    void loadFragment(String title, Fragment fragment) {
+        setTitle(title);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -88,9 +105,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_learn) {
             // Handle the learn action
-            Toast.makeText(this, "Learn was clicked", Toast.LENGTH_LONG).show();
+            loadFragment("Learn", new Learn());
         } else if (id == R.id.nav_action) {
 
+            // Handle the learn action
+            loadFragment("Take Action", new TakeAction());
         } else if (id == R.id.nav_events) {
 
         } else if (id == R.id.nav_charities) {
