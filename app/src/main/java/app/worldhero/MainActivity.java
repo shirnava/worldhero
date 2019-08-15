@@ -23,6 +23,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
+
+import app.worldhero.fragments.Charities;
+import app.worldhero.fragments.Events;
 import app.worldhero.fragments.Learn;
 import app.worldhero.fragments.TakeAction;
 
@@ -111,10 +114,11 @@ public class MainActivity extends AppCompatActivity
             // Handle the learn action
             loadFragment("Take Action", new TakeAction());
         } else if (id == R.id.nav_events) {
-
+            loadFragment("Events", new Events());
         } else if (id == R.id.nav_charities) {
-
+            loadFragment("Charities", new Charities());
         } else if (id == R.id.nav_share) {
+
 
         } else if (id == R.id.nav_send) {
 
